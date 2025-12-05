@@ -17,3 +17,4 @@ bash
 
 # Adicionar NAT para tráfego da LAN (se já não tiver)
 /ip firewall nat add chain=srcnat src-address=10.0.0.0/24 out-interface=WAN action=masquerade
+
