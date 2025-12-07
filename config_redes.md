@@ -1,6 +1,10 @@
 # 1. Configurar IP da LAN
 /ip address add address=10.0.0.1/24 interface=LAN
 
+# Configurar uma interface para determinada porta física
+
+/interface ethernet set ether2 name=LAN
+
 # 2. Configurar DHCP
 /ip pool add name=lan-pool ranges=10.0.0.100-10.0.0.200
 /ip dhcp-server network add address=10.0.0.0/24 gateway=10.0.0.1 dns-server=8.8.8.8,8.8.4.4
