@@ -38,10 +38,20 @@ A CPE pode estar em dois modos:
 Devido a regra já está criada, nesse caso para a ativação usa-se apenas o identificador da regra.
 <img width="901" height="219" alt="image" src="https://github.com/user-attachments/assets/dcd06590-78f6-44d0-a841-bd6a002d67a3" />
 
+
 ``
 /system/script/ run "ATIVAR_MODO_ROTEADO"
 ``
 
+### Mudanças realizadas:
+1. Ativação do PPPoE Client
+ <img width="1239" height="385" alt="image" src="https://github.com/user-attachments/assets/b46d9c8f-388e-414c-9607-b03d26acfcf4" />
+
+2. Desativação do DHCP Server
+ <img width="818" height="181" alt="image" src="https://github.com/user-attachments/assets/3110f802-0185-4917-9500-d8149fa414a0" />
+
+3. portas da bridge desativadas
+<img width="1074" height="155" alt="image" src="https://github.com/user-attachments/assets/8f0fbb5e-d262-4c82-a849-e764d4bb27c9" />
 
 
 
