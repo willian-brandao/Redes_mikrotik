@@ -32,6 +32,16 @@ A CPE pode estar em dois modos:
    * IP FIXO
 2. CPE em modo de Roteamento - Informações são de controle do ISP
    * Colocar IP fixo no equipamento habilitando a dmz para que ele tenha acesso a rede externa.
-   * Reservar IP no DHCP da CPE 
+   * Reservar IP no DHCP da CPE.
+
+## Ativar o modo roteavel  do roteador
+Devido a regra já está criada, nesse caso para a ativação usa-se apenas o identificador da regra.
+<img width="901" height="219" alt="image" src="https://github.com/user-attachments/assets/dcd06590-78f6-44d0-a841-bd6a002d67a3" />
+
+``
+/system/script/ run "ATIVAR_MODO_ROTEADO"
+``
+
+
 
 
