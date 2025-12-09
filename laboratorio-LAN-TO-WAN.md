@@ -23,6 +23,15 @@
     /interface ethernet set ether2 name=LAN
 ``
 
-# Configurando CPE Mikrotik para se conectar a rede da empresa que fornece link
+# Configurando CPE Mikrotik para se conectar a rede da empresa a rede de um ISP
+
+A CPE pode estar em dois modos:
+1. Bridge - Todas cconfigurações chegaam até o equipamento próprio e as configurações terão que ser realizadas pelo próprio usuário.
+   * DHCP
+   * PPPoE
+   * IP FIXO
+2. CPE em modo de Roteamento - Informações são de controle do ISP
+   * Colocar IP fixo no equipamento habilitando a dmz para que ele tenha acesso a rede externa.
+   * Reservar IP no DHCP da CPE 
 
 
