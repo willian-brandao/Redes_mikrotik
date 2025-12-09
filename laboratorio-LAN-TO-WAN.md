@@ -34,7 +34,7 @@ A CPE pode estar em dois modos:
    * Colocar IP fixo no equipamento habilitando a dmz para que ele tenha acesso a rede externa.
    * Reservar IP no DHCP da CPE.
 
-## Ativar o modo roteavel  do roteador
+## Ativar o modo roteavel  do CPE do ISP
 Devido a regra já está criada, nesse caso para a ativação usa-se apenas o identificador da regra.
 <img width="901" height="219" alt="image" src="https://github.com/user-attachments/assets/dcd06590-78f6-44d0-a841-bd6a002d67a3" />
 
@@ -53,5 +53,25 @@ Devido a regra já está criada, nesse caso para a ativação usa-se apenas o id
 3. portas da bridge desativadas
 <img width="1074" height="155" alt="image" src="https://github.com/user-attachments/assets/8f0fbb5e-d262-4c82-a849-e764d4bb27c9" />
 
+### Realizar alteração de modo de dhcp dentro do roteador da empresa
+
+
+Ativar o dhcp-client
+
+``
+/ip/dhcp-client/enable [find interface="ether1-link-vivo"]
+``
+
+Desativar o dhcp-client
+
+``
+/ip/dhcp-client/disable [find interface="ether1-link-vivo"]
+``
+
+### Habilitar o nat no roteador para que os computadores conectados possam navegar na internet
+
+``
+/ip/firewall/nat/add chain=srcnat out-interface="ether1-link-vivo" action=masquerade
+``
 
 
