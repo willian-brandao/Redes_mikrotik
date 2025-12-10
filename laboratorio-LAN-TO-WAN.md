@@ -1,27 +1,27 @@
 # Configurando a rede LAN do roteador Mikrotik
 
 ## -> Ativar o romon (Router Management Overlay Network) recurso que permite acessar e administrar o equipamento da mikrotik
-``  
+```bash  
 /tool/romon/set enabled=yes secrets=123mudar 
-``
+```
 ## -> Atribuição de IP à interface LAN do roteador e nomear o pool de IPs
-``
+```bash
  /ip address add address=192.168.1.1/24 interface=LAN
  /ip pool name=LAN-POOL ranges=192.168.1.1-192.168.1.254
-``
+```
 ##  -> Configuração de dhcp server no roteador
     
     /ip dhcp-server network add address=192.168.1.0/24 gateway=192.168.1.1 dns-server=8.8.8.8,8.8.4.4
     
     /ip dhcp-server interface=LAN address-pool=lan-pool disabled=no
 ## -> Renomear roteador
-``
+```bash
     /system identity set name=004-ROTEADOR
-``
+```
 ## -> Renomear interfaces
-``
+```bash
     /interface ethernet set ether2 name=LAN
-``
+```
 
 # Configurando CPE Mikrotik para se conectar a rede da empresa a rede de um ISP
 
@@ -39,9 +39,9 @@ Devido a regra já está criada, nesse caso para a ativação usa-se apenas o id
 <img width="901" height="219" alt="image" src="https://github.com/user-attachments/assets/dcd06590-78f6-44d0-a841-bd6a002d67a3" />
 
 
-``
+```bash
 /system/script/ run "ATIVAR_MODO_ROTEADO"
-``
+```
 
 ### Mudanças realizadas:
 1. Ativação do PPPoE Client
@@ -58,20 +58,35 @@ Devido a regra já está criada, nesse caso para a ativação usa-se apenas o id
 
 Ativar o dhcp-client
 
-``
+```bash
 /ip/dhcp-client/enable [find interface="ether1-link-vivo"]
-``
+```
 
 Desativar o dhcp-client
 
-``
+```bash
 /ip/dhcp-client/disable [find interface="ether1-link-vivo"]
-``
+```
 
 ### Habilitar o nat no roteador para que os computadores conectados possam navegar na internet
 
-``
+```bash
 /ip/firewall/nat/add chain=srcnat out-interface="ether1-link-vivo" action=masquerade
-``
+```
+# Ativando o link de Internet na CPE Bridge (dhcp e pppoe client)
+
+Opções de recebimento de informações de rede da WAN
+
+* PPPoE Cliente
+* DHCP Cliente
+* IP fixo e público sem VLAN
+* IP fixo e público com VLAN
+
+Etapas para configuração:
+1. Configure o roteador para receber as informações de WAN e de acordo com sua realidade.
+2. Faça a regra de NAT.
+3. Coloque IP na interface de LAN.
+4. Crie o DHCP Server na interface de LAN.
+
 
 
