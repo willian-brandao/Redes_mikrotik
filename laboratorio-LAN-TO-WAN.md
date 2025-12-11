@@ -77,12 +77,28 @@ Desativar o dhcp-client
 
 Opções de recebimento de informações de rede da WAN
 
-* PPPoE Cliente
+* PPPoE Cliente-> (cgnat/123) ou (publico/123)
 * DHCP Cliente
 * IP fixo e público sem VLAN
 * IP fixo e público com VLAN
 
 Etapas para configuração:
+
+### Ativar o modo bridge na CPE
+
+Essa configuração fará com que a cpe não tenha configurações pre-definidas e todas as configurações sejam administradas apenas pelo roteador que está conectada a CPE.
+
+```bash
+/system/script/ run "ATIVAR_MODO_BRIDGE"
+```
+Dentro do WINBOX:
+
+Acessar System > Scripts > Selecionar Modo Bridge > Run Script
+
+<img width="968" height="472" alt="image" src="https://github.com/user-attachments/assets/56d808c9-693f-4343-9d10-6cabb3cb09da" />
+
+## Configurar a interface PPPoE 
+
 1. Configure o roteador para receber as informações de WAN e de acordo com sua realidade.
 
 1.1. Retirar a configuração de DHCP client do roteador alocado dentro da empresa que contratou o link
@@ -110,11 +126,24 @@ use-peer-dns=yes → recebe DNS do provedor
 disabled=no → já ativa ao criar
 ```
 
-Importante criar uma regra de firewall para a interface por meio de um NAT
+1.3 Importante criar uma regra de firewall para a interface por meio de um NAT
 
 ```bash
 /ip firewall nat add chain=srcnat out-interface=pppoe-out1 action=masquerade
 ```
+
+O mesmo procedimento realizado pelo winbox:
+
+1. Definição do nome da interface
+
+<img width="1481" height="845" alt="image" src="https://github.com/user-attachments/assets/280079ea-2e9d-493b-94a2-8b35d5471659" />
+
+1.2 - Configurar usuário e senha (cgnat/123) ou (publico/123)
+
+<img width="501" height="465" alt="image" src="https://github.com/user-attachments/assets/ef2a9f45-8aad-434e-9946-dfee95d57b0a" />
+
+
+
 
 3. Faça a regra de NAT.
 4. Coloque IP na interface de LAN.
