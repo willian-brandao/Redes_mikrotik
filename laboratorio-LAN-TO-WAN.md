@@ -84,9 +84,41 @@ Opções de recebimento de informações de rede da WAN
 
 Etapas para configuração:
 1. Configure o roteador para receber as informações de WAN e de acordo com sua realidade.
-2. Faça a regra de NAT.
-3. Coloque IP na interface de LAN.
-4. Crie o DHCP Server na interface de LAN.
+
+1.1. Retirar a configuração de DHCP client do roteador alocado dentro da empresa que contratou o link
+
+```bash
+ /ip/dhcp-client/disable [find interface="ether1-1-link-vivo"]
+```
+1.2 - Criando a interface PPPoE de cliente dentro do roteador
+
+```bash
+/interface/pppoe-client/add name="pppoe-client-vivo" interface="ether1-link-vivo" user=USUARIO password=PASSWORD disable=no add-default-route=yes use-peer-dns=yes
+
+name=pppoe-out1 → nome da interface PPPoE criada
+
+interface=ether1 → interface física conectada ao modem
+
+user= → usuário PPPoE fornecido pelo provedor
+
+password= → senha PPPoE
+
+add-default-route=yes → cria a rota default automaticamente
+
+use-peer-dns=yes → recebe DNS do provedor
+
+disabled=no → já ativa ao criar
+```
+
+Importante criar uma regra de firewall para a interface por meio de um NAT
+
+```bash
+/ip firewall nat add chain=srcnat out-interface=pppoe-out1 action=masquerade
+```
+
+3. Faça a regra de NAT.
+4. Coloque IP na interface de LAN.
+5. Crie o DHCP Server na interface de LAN.
 
 
 
