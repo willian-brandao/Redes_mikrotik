@@ -14,10 +14,24 @@
 ```
 export
 ```
-## Configurações exportadas
+<p> Em casos de exportação de conteúdos sensíveis como senhas, usa-se o parametro 'show-sensitive'</p>
+
+```
+export show-sensitive
+```
+## Configurações exportadas (exemplo).
 ```
 /system identity set name=oper-0001
 
 /tool romon set enabled=yes secrets=123
 
 ```
+## Identificar as interfaces
+
+Esse tipo de procedimento é importante para identificar cada serviço que está atribuído em determinado equipamento. 
+
+Estrutura do comando: interface/set [id da interface] name=[nome da interface]
+```
+interface/set ether1 name=operadora_0
+```
+
