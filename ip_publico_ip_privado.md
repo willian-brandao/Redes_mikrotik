@@ -32,3 +32,32 @@
    ```bash
        /system/telnet address=192.168.1.254 port=80 
    ```
+## Configuração da CPE em Modo Bridge 
+
+### Objetivo
+
+O objetivo deste laboratório é configurar uma CPE em modo bridge para que o roteador mikrotik por meio de usuário PPPoE receba IP público direto do ISP.  Com esse IP público será possível acessar serviços hospedados na rede local de fora da rede. 
+
+1. Ativar o modo bridge da CPE
+   A CPE do laboratório possui um script para ativar o modo bridge, nesse caso   somente o script será executado. Acessando a CPE digite o comando:
+
+```
+   system/script/run ATIVAR_MODO_BRIDGE
+```
+Exemplo do script:
+
+```
+  name="ATIVAR_MODO_BRIDGE" owner="admin"
+     policy=ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon
+     dont-require-permissions=no run-count=0 source=
+       #ATIVA O MODO BRIDGE
+       /interface/bridge/port enable [find]
+
+       /interface/pppoe-client/disable pppoe-cliente
+
+       /ip/dhcp-server/disable dhcp1
+```
+2. Acessando o roteador e fazer a configuração de PPPoE.
+```
+/interface pppoe-client add  name=pppoe-client interface=ether1  user=mudei password=123 disabled=no
+```
