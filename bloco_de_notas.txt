@@ -1,0 +1,74 @@
+IP FIXO SEM VLAN
+
+REDE = 200.10.3.0/30
+
+200.10.3.0 - REDE
+200.10.3.1 - PROVEDOR VIVO
+200.10.3.2 - ROTEADOR CONTABILIDADE
+200.10.3.3 - BROADCAST
+
+IP COM MASCARA DE SUB-REDE - 200.10.3.2/30
+GATEWAY - 200.10.3.1 
+DNS - 8.8.8.8, 1.1.1.1
+
+------------------------------------------------------------------------------------------------------------------
+
+Conectando um router mikrotik  rede de um provedor utilizando um IP FIXO
+
+1. Configurado a interface de endereço IP do roteador recebido pelo provedor. 
+
+IP > ADRESSES > IP: 200.10.3.0/30 
+
+Para permitir que o roteador possa se comunicar com a rede externa, deve-se 
+2. Configurar uma rota default para conectar a rede local ao gateway da rede. 
+
+IP > ROUTES >
+Dst Adress: 0.0.0.0/0 (qualquer endereço da internet)
+Gateway: 200.10.3.0
+COMMENT: "ROTA DEFAULT REDE LOCAL PARA INTERNET"
+====================================================================================================================
+
+IP FIXO COM VLAN
+VLAN = 200
+
+REDE = 200.10.3.4/30
+
+200.10.3.4 - REDE
+200.10.3.5 - PROVEDOR VIVO
+200.10.3.6 - ROTEADOR CONTABILIDADE
+200.10.3.7 - BROADCAST
+
+IP COM MASCARA DE SUB-REDE - 200.10.3.5
+GATEWAY - 200.10.2.5
+DNS - 8.8.8.8, 1.1.1.1
+
+1. Criar a interface associada a vlan 
+interfaces>vlan>add 
+  name - nome da interface
+  vlan id - número da vlan
+  interface - interface que entrega o serviço
+Após realizar o procedimento: apply e ok
+
+2. Configurar o ip da interface do roteador
+Ao configurar a máscara o gateway é configurado automaticamente
+IP>addresses>add
+address:200.10.3.6/30
+interface: interface com a vlan configurada
+
+3. Configurar o gateway por meio da rota default
+IP>routes>add
+Gateway: 200.10.3.5
+
+4. Configurar um nat para interface da vlan configurada
+IP>firewall>add
+chain: srcnat
+Out. Interface: ether1_vlan200-link-provedor
+action: masquerade
+
+
+
+
+
+
+
+
