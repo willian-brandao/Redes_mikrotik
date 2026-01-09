@@ -1,0 +1,15 @@
+Criar a configuração de interface de conexão de rede para que o cliente se conecte por meio de um
+IP de CGNAT.
+
+Criar um cliente PPPoE se conectando ao cgnt 
+--------------------------------------------------------------------------------------------------------------------
+ppp > add > pppoe client 
+General
+name: cliente-pppoe-provedor (ex)
+interfaces: ether1-link-provedor
+Dial Out
+user: usuario 
+password: senha
+apply
+--------------------------------------------------------------------------------------------------------------------
+
