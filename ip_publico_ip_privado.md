@@ -61,3 +61,15 @@ Exemplo do script:
 ```
 /interface pppoe-client add  name=pppoe-client interface=ether1  user=mudei password=123 disabled=no
 ```
+
+## CPE Roteada e com IP Público 
+
+Primeiramente, é preciso mudar o modo de configuração de CPE que atende o cliente. Para determinado serviços a CPE estava em modo bridge, mas para essa atividade a cpe ficará em modeo roteável. 
+
+no winbox
+- system>scripts> "ativar modo roteado"
+run script
+- Desativar a interface de pppoe client
+- Ativar a interface de dhcp de client
+
+ 
