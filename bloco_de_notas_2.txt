@@ -31,6 +31,9 @@ Esse Ip vai ser utilizado no winbox, se o acesso for feito por do winbox.
 Em Firewall, é possível utilizar o redirecionamento no NAT e liberação de portas em "Filter Rules".
 
 Dentro de um "filter rules" é possível criar uma exceção em "Connection NAT State" na configuração da regra de redirecionamento. 
-
+-----------------------------------------------------------------------------------------------------------------
+Regra de Firewall criada dentro do roteador 
+requisição que chega pela porta 80 redirecione para porta 80 do IP 192.168.1.254
+requisição pela porta 10021 Redirecione para porta 80 do IP 192.168.1.254
 
 
