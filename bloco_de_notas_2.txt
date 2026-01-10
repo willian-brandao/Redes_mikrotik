@@ -11,5 +11,26 @@ Dial Out
 user: usuario 
 password: senha
 apply
---------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------No caso do uso de CGNAT um  procedimento de abertura de portas será necessário para que o cliente acesse determinados serviços.
+
+No roteador do provedor cconfigurar uma regra de firewall para que o endereço IP destinado ao cliente tenha regras que permitem que o range de porta 10020 até 10029 seja abertas para acesso. 
+IP>FIREWALL>NAT
+GENERAL
+chain: dstnat - especificando a interface de entrada WAN para a porta de destino
+protocol - tcp
+dst port - a porta ou o range de portas que será configurado
+
+ACTION
+action - dst-nat - redirecionamento à porta de destino
+to addresses - o endereço IP do equipamento conectado à rede
+
+Para validar esse acesso pode ser feito por meio de winbox de fora da rede usando o IP público de loopback do provedor da rede, ex: 200.10.3.254
+
+Esse Ip vai ser utilizado no winbox, se o acesso for feito por do winbox.
+
+Em Firewall, é possível utilizar o redirecionamento no NAT e liberação de portas em "Filter Rules".
+
+Dentro de um "filter rules" é possível criar uma exceção em "Connection NAT State" na configuração da regra de redirecionamento. 
+
+
 
